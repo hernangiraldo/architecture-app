@@ -7,6 +7,7 @@ interface Robot {
   swim(): void;
 }
 
+
 class WalkingRobotBad implements Robot {
   recharge() {
     console.log('Recharging...');

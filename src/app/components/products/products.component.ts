@@ -22,17 +22,15 @@ export class ProductsComponent implements OnInit {
   }
 
   getCreditCards() {
-    const url =
     this.httpClient.get<CreditCard[]>(`${environment.apiBaseUrl}/credit-cards`)
       .subscribe({
         next: (response) => {
-          this.creditCards = response;
-          // this.creditCards = response.map((creditCard) => {
-          //   return {
-          //     ...creditCard,
-          //     isActivate: creditCard.status !== 'Cancelada' && creditCard.status !== 'CANCELADA'
-          //   }
-          // });
+          this.creditCards = response.map((creditCard) => {
+            return {
+              ...creditCard,
+              isActivate: creditCard.status !== 'Cancelada' && creditCard.status !== 'CANCELADA'
+            }
+          });
         }
       })
   }

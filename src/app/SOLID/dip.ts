@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class DataServiceBad {
-  constructor( private http: HttpClient ) { }
+  constructor(private http: HttpClient ) { }
 
   fetchData(url: string): Observable<any> {
     return this.http.get(url);

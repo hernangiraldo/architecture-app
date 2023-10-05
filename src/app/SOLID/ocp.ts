@@ -4,7 +4,8 @@ import {Component, Injectable} from "@angular/core";
 
 enum ReportType {
   JSON,
-  XML
+  XML,
+  RICARDO
 }
 
 @Injectable({
@@ -17,6 +18,8 @@ export class ReportBadService {
     } else if (type === ReportType.XML) {
       // Supongamos que esta función convierte el data a un string XML
       return this.convertToXML(data);
+    } else if (type === ReportType.RICARDO) {
+      return '';
     }
     return '';
   }
@@ -47,6 +50,12 @@ class XmlReport implements ReportStrategy {
   }
 }
 
+class RicardoReport implements ReportStrategy {
+  generate(data: any): string {
+    return 'Ricardo';
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -66,7 +75,7 @@ export class SomeComponent {
 
   constructor(
     private reportService: ReportService,
-    private reportStrategy: XmlReport // inyectamos la estrategia deseada
+    private reportStrategy: JsonReport // inyectamos la estrategia deseada
   ) {}
 
   getReport(data: any) {
